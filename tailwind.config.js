@@ -7,6 +7,10 @@ export default {
   ],
 
   theme: {
+    container: {
+      center: true,
+      padding: '24px',
+    },
       screens: {
         'sm': '640px',
         'md': '768px',
@@ -17,12 +21,14 @@ export default {
   
     extend: {
       fontFamily: {
-        display: 'Oswald, ui-serif', // Adds a new `font-display` class
+        display: "Space Mono,  monospace",
       },	fontSize: {
-  			header1: '64px',
-  			header2: '40px',
-  			bodyText: '16px',
-  			navText: '14px'
+  			header1: '26px',
+  			header2: '22px',
+  			header3: '16px',
+  			header4: '13px',
+  			header4: '13px',
+        body:'15px'
   		},
 
     },
