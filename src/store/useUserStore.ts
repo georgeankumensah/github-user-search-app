@@ -7,20 +7,24 @@ const useUserStore = create((set) => ({
   fetchUser: async (username: string) => {
     set({ loading: true, error: null });
     try {
+      console.log("run fetch function on user...", username);
       const response = await fetch(
         `https://api.github.com/users/${username}`
       ).then((res) => res.json());
-      if (!response.ok) {
+
+      // console.log("RESPONSE...", response);
+      if (!response.ok && response.status !== 200) {
         if (response.status === 404) {
           throw new Error("No results");
         }
-        throw new Error(`request error! Status: ${response.status}`);
+        throw new Error(`request error!`)
       }
 
-      set({ loading: false, error: null, user: response.data });
-      console.log("user", response.data);
+      set({ loading: false, error: null, user: response });
+      // console.log("user data .. ", response);
     } catch (error) {
-      set({ error: (error as Error).message, loading: false });
+      set({ error: (error as Error).message, loading: false, user: null });
+      // console.log("error..", error);
     }
   },
 }));
