@@ -3,15 +3,17 @@ import Icons from "../../assets";
 import useUserStore from "../../store/useUserStore";
 
 const SearchBar = () => {
-  const { fetchUser,error } = useUserStore();
+  const { fetchUser,error,loading } = useUserStore();
   const [username, setUsername] = useState("");
+  console.log({loading})
 
   const handleSearch = () => {
     console.log("searching ...",username)
+    
     fetchUser(username);
   };
   return (
-    <div className="flex items-center w-full rounded-[15px] bg-white h-[60px] p-[7px] md:p-[10px] gap-x-[7px] md:gap-x-[23px]  ">
+    <div className="flex items-center w-full rounded-[15px] bg-white dark:bg-[#1E2A47] h-[60px] p-[7px] md:p-[10px] gap-x-[7px] md:gap-x-[23px] shadow-lg ">
       <img
         src={Icons.search}
         alt="search icon"
@@ -24,7 +26,7 @@ const SearchBar = () => {
         value={username}
         onChange={(e)=> setUsername(e.target.value)}
         placeholder="Search GitHub username…"
-        className="placeholder:text-header4 md:placeholder:text-[18px] cursor-pointer  w-full placeholder:text-[#4B6A9B] outline-none placeholder:line-clamp-1  "
+        className="placeholder:text-header4 bg-transparent md:placeholder:text-[18px] dark:placeholder:text-white cursor-pointer  w-full placeholder:text-[#4B6A9B] outline-none placeholder:line-clamp-1  "
       />
       {error && <p className=" text-[#F74646] text-header4 md:text-header3 shrink-0">{error}</p> }
       
